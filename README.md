@@ -50,6 +50,8 @@ The page intentionally blocks submission while the placeholder form ID remains.
 
 The public source repository is `StarchipMC/website`. Pushes to `main` deploy through the included GitHub Actions workflow.
 
+Staging URL: `https://starchipmc.github.io/website/`
+
 1. Review the default staging URL before attaching the custom domain.
 2. Configure `starchipmc.com` under **Settings → Pages → Custom domain** only after the GoDaddy DNS zone is backed up.
 3. Follow the DNS and HTTPS sequence in the StarchipMC Technical Launch Plan.
