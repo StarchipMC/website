@@ -48,7 +48,7 @@ The page intentionally blocks submission while the placeholder form ID remains.
 
 ### GitHub Pages
 
-The public source repository is `StarchipMC/website`. Pushes to `main` deploy through the included GitHub Actions workflow.
+The public source repository is `StarchipMC/website`. GitHub Pages publishes directly from the root of `main`, so every push deploys automatically without a build workflow.
 
 Staging URL: `https://starchipmc.github.io/website/`
 
@@ -56,7 +56,7 @@ Staging URL: `https://starchipmc.github.io/website/`
 2. Configure `starchipmc.com` under **Settings → Pages → Custom domain** only after the GoDaddy DNS zone is backed up.
 3. Follow the DNS and HTTPS sequence in the StarchipMC Technical Launch Plan.
 
-GitHub ignores repository `CNAME` files when publishing through a custom Actions workflow, so the production domain is managed in Pages settings instead.
+Configure the production domain in Pages settings during DNS launch. GitHub will manage the corresponding `CNAME` file when branch publishing is active.
 
 ## Content and privacy rules
 
