@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#02080d" />
+    <meta
+      name="description"
+      content="Explore StarchipMC, a private Minecraft server for Starfire and her real-world friends, with Survival, Skyblocks, and PvP connected through one floating Lobby."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="StarchipMC | A Private Minecraft World for Friends" />
+    <meta
+      property="og:description"
+      content="Welcome to StarchipMC—a private Minecraft world where real-world friends meet in one floating Lobby and choose their next adventure."
+    />
+    <meta property="og:url" content="https://starchipmc.com/" />
+    <meta property="og:site_name" content="StarchipMC" />
+    <link rel="canonical" href="https://starchipmc.com/" />
+    <link rel="icon" type="image/webp" href="assets/icons/starchip-emblem.webp" />
+    <link rel="preload" href="assets/fonts/Silkscreen-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="assets/fonts/ChakraPetch-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="assets/images/hero/outside-view-space.webp" as="image" type="image/webp" />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
+    </script>
+    <title>StarchipMC | A Private Minecraft World for Friends</title>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header shell" data-site-header>
+      <a class="brand" href="#top" aria-label="StarchipMC home">
+        <img src="assets/icons/starchip-emblem.webp" alt="" width="52" height="54" />
+        <span class="brand-copy">
+          <span class="brand-name">Starchip<span>MC</span></span>
+          <span class="brand-kicker">Mission Control</span>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-navigation"
+        data-menu-toggle
+      >
+        <span class="menu-toggle__label">Menu</span>
+        <span class="menu-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation" data-site-nav>
+        <a href="#worlds">Worlds</a>
+        <a href="#access">How access works</a>
+        <a href="#parents">Parent briefing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="endpoint endpoint--header" type="button" data-copy-server>
+        <span class="endpoint__icon" aria-hidden="true">▣</span>
+        <span data-server-address>play.starchipmc.com</span>
+        <span class="sr-only">Copy server address</span>
+      </button>
+    </header>
+
+    <main id="main-content">
+      <section class="hero shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-art" aria-hidden="true">
+          <img
+            class="hero-art__view"
+            src="assets/images/hero/outside-view-space.webp"
+            alt=""
+            width="1915"
+            height="821"
+          />
+          <img
+            class="hero-art__cockpit"
+            src="assets/images/hero/cockpit-overlay.webp"
+            alt=""
+            width="1823"
+            height="863"
+          />
+        </div>
+
+        <div class="hero-copy">
+          <p class="hero-status">Private world · Invite only</p>
+          <h1 id="hero-title">Welcome Aboard,<br />Your Crew is Waiting.</h1>
+          <p>
+            StarchipMC is a private Minecraft world shared by Starfire and her real-world friends.
+            Explore Survival, Skyblocks, and PvP from one floating Lobby.
+          </p>
+        </div>
+
+        <div class="server-console" aria-label="StarchipMC server address">
+          <div>
+            <span class="server-console__label">Server address</span>
+            <code data-server-address>play.starchipmc.com</code>
+          </div>
+          <button class="copy-button" type="button" data-copy-server>
+            <span aria-hidden="true">▣</span>
+            <span data-copy-label>Copy</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="mission-panel shell" id="worlds" aria-labelledby="worlds-title">
+        <div class="section-heading">
+          <p class="eyebrow">Explore the worlds</p>
+          <h2 id="worlds-title">Three Ways to Play</h2>
+          <p>Meet in the floating Lobby, then choose the world that fits the day.</p>
+        </div>
+
+        <div class="world-grid">
+          <article class="world-card world-card--survival">
+            <div class="world-card__media">
+              <img
+                src="assets/images/worlds/survival.webp"
+                alt="A Minecraft village beside a lake and mountains"
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="world-card__icon" aria-hidden="true">
+                <img src="assets/icons/world-survival.webp" alt="" width="226" height="256" />
+              </span>
+            </div>
+            <div class="world-card__body">
+              <h3>Survival</h3>
+              <p class="world-card__tag">Build together</p>
+              <p>
+                Build, explore, gather, and make a home together in a dedicated survival world.
+              </p>
+              <details>
+                <summary>World briefing</summary>
+                <p>
+                  Explore, gather resources, build a home, and create something together. Settle near
+                  friends or head out on an adventure, then return to the Lobby whenever you are ready
+                  for something different.
+                </p>
+              </details>
+            </div>
+          </article>
+
+          <article class="world-card world-card--skyblocks">
+            <div class="world-card__media">
+              <img
+                src="assets/images/worlds/skyblocks.webp"
+                alt="A Minecraft island floating in space"
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="world-card__icon" aria-hidden="true">
+                <img src="assets/icons/world-skyblocks.webp" alt="" width="235" height="256" />
+              </span>
+            </div>
+            <div class="world-card__body">
+              <h3>Skyblocks</h3>
+              <p class="world-card__tag">Grow an island</p>
+              <p>
+                Start with a small island, gather what you can, and grow it into a world of your own.
+              </p>
+              <details>
+                <summary>World briefing</summary>
+                <p>
+                  Begin with limited resources on a small floating island. Build carefully, discover
+                  what the island can become, and keep expanding into the open sky at your own pace.
+                </p>
+              </details>
+            </div>
+          </article>
+
+          <article class="world-card world-card--pvp">
+            <div class="world-card__media">
+              <img
+                src="assets/images/worlds/pvp.webp"
+                alt="A torch-lit Minecraft fortress arena"
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="world-card__icon" aria-hidden="true">
+                <img src="assets/icons/world-pvp.webp" alt="" width="256" height="240" />
+              </span>
+            </div>
+            <div class="world-card__body">
+              <h3>PvP</h3>
+              <p class="world-card__tag">Enter the arena</p>
+              <p>
+                Gear up in the Armory, then enter a dedicated arena for friendly competition.
+              </p>
+              <details>
+                <summary>World briefing</summary>
+                <p>
+                  Visit the Armory, choose your gear, and step into the dedicated PvP arena with
+                  friends when the group wants a faster challenge.
+                </p>
+              </details>
+            </div>
+          </article>
+        </div>
+
+        <div class="access-section" id="access" aria-labelledby="access-title">
+          <div class="section-heading section-heading--compact">
+            <p class="eyebrow">Private by design</p>
+            <h2 id="access-title">How Access Works</h2>
+            <p>StarchipMC is shared directly with families who already know the group.</p>
+          </div>
+
+          <ol class="access-grid">
+            <li class="access-card access-card--invite">
+              <span class="access-card__number">1</span>
+              <img src="assets/icons/access-invite.webp" alt="" width="256" height="188" loading="lazy" />
+              <div>
+                <h3>Invite</h3>
+                <p>Access is shared directly with real-world friends.</p>
+              </div>
+            </li>
+            <li class="access-card access-card--review">
+              <span class="access-card__number">2</span>
+              <img src="assets/icons/access-review.webp" alt="" width="254" height="256" loading="lazy" />
+              <div>
+                <h3>Review</h3>
+                <p>Parents can read how the worlds and boundaries work.</p>
+              </div>
+            </li>
+            <li class="access-card access-card--play">
+              <span class="access-card__number">3</span>
+              <img src="assets/icons/access-play.webp" alt="" width="256" height="249" loading="lazy" />
+              <div>
+                <h3>Play</h3>
+                <p>Friends meet in the Lobby and choose a world.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="briefing shell" id="parents" aria-labelledby="parents-title">
+        <header class="briefing__header">
+          <img src="assets/icons/parent-briefing.webp" alt="" width="215" height="256" loading="lazy" />
+          <div>
+            <p class="eyebrow">For invited families</p>
+            <h2 id="parents-title">Parent Briefing</h2>
+            <p>Clear answers before anyone plays.</p>
+          </div>
+        </header>
+
+        <div class="accordion" data-accordion>
+          <article class="accordion__item">
+            <h3>
+              <button
+                type="button"
+                id="question-public"
+                aria-expanded="true"
+                aria-controls="answer-public"
+                data-accordion-button
+              >
+                <span>Is StarchipMC open to the public?</span>
+                <span class="accordion__symbol" aria-hidden="true">−</span>
+              </button>
+            </h3>
+            <div class="accordion__answer" id="answer-public" role="region" aria-labelledby="question-public">
+              <p>
+                No. StarchipMC is a private server for Starfire and her real-world friends. Invited
+                players connect at <code>play.starchipmc.com</code> after access is approved.
+              </p>
+            </div>
+          </article>
+
+          <article class="accordion__item">
+            <h3>
+              <button
+                type="button"
+                id="question-who"
+                aria-expanded="false"
+                aria-controls="answer-who"
+                data-accordion-button
+              >
+                <span>Who can play?</span>
+                <span class="accordion__symbol" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="accordion__answer" id="answer-who" role="region" aria-labelledby="question-who" hidden>
+              <p>
+                Starfire and friends who know the group in real life. Access is shared directly rather
+                than through public registration.
+              </p>
+            </div>
+          </article>
+
+          <article class="accordion__item">
+            <h3>
+              <button
+                type="button"
+                id="question-activities"
+                aria-expanded="false"
+                aria-controls="answer-activities"
+                data-accordion-button
+              >
+                <span>What can players do?</span>
+                <span class="accordion__symbol" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div
+              class="accordion__answer"
+              id="answer-activities"
+              role="region"
+              aria-labelledby="question-activities"
+              hidden
+            >
+              <p>Friends meet in the floating Lobby, then choose Survival, Skyblocks, or the PvP Arena.</p>
+            </div>
+          </article>
+
+          <article class="accordion__item">
+            <h3>
+              <button
+                type="button"
+                id="question-mods"
+                aria-expanded="false"
+                aria-controls="answer-mods"
+                data-accordion-button
+              >
+                <span>Are mods required?</span>
+                <span class="accordion__symbol" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="accordion__answer" id="answer-mods" role="region" aria-labelledby="question-mods" hidden>
+              <p>No custom modpack or required resource pack is currently needed.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact shell" id="contact" aria-labelledby="contact-title">
+        <img
+          class="contact__art"
+          src="assets/images/contact/contact-transmission-background.webp"
+          alt=""
+          width="1672"
+          height="940"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="contact__scrim" aria-hidden="true"></div>
+
+        <div class="contact__copy">
+          <p class="eyebrow">Direct transmission</p>
+          <h2 id="contact-title">Questions from a parent?</h2>
+          <p>If your child has been invited and you want to understand StarchipMC, send us a note.</p>
+          <p>We’re happy to answer questions about access, boundaries, and how the worlds work.</p>
+        </div>
+
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/REPLACE_FORM_ID"
+          method="post"
+          data-contact-form
+        >
+          <div class="form-field">
+            <label for="contact-name">Your name</label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="form-field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="form-field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="6" required></textarea>
+          </div>
+
+          <div class="honeypot" aria-hidden="true">
+            <label for="contact-company">Leave this field empty</label>
+            <input id="contact-company" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <input type="hidden" name="_subject" value="New StarchipMC parent question" />
+          <p class="form-note">
+            Please don’t include a child’s full name, Minecraft username, password, or other sensitive details.
+          </p>
+          <button class="submit-button" type="submit">
+            <span data-submit-label>Send a question</span>
+            <span aria-hidden="true">›</span>
+          </button>
+          <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <a class="brand brand--footer" href="#top" aria-label="Back to the top of StarchipMC">
+        <img src="assets/icons/starchip-emblem.webp" alt="" width="52" height="54" loading="lazy" />
+        <span class="brand-copy">
+          <span class="brand-name">Starchip<span>MC</span></span>
+          <span class="brand-kicker">Mission Control</span>
+        </span>
+      </a>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#worlds">Worlds</a>
+        <a href="#access">How access works</a>
+        <a href="#parents">Parent briefing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="endpoint endpoint--footer" type="button" data-copy-server>
+        <span class="endpoint__icon" aria-hidden="true">▣</span>
+        <span data-server-address>play.starchipmc.com</span>
+        <span class="sr-only">Copy server address</span>
+      </button>
+
+      <p class="site-footer__status">Private · Invite only</p>
+      <p class="site-footer__legal">StarchipMC is not affiliated with Mojang Studios or Microsoft.</p>
+    </footer>
+
+    <p class="sr-only" role="status" aria-live="polite" data-global-status></p>
+    <script src="script.js" defer></script>
+  </body>
+</html>
