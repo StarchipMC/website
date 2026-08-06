@@ -48,14 +48,13 @@ The page intentionally blocks submission while the placeholder form ID remains.
 
 ### GitHub Pages
 
-1. Create a clean public GitHub repository and copy this directory into its root.
-2. Push the default branch as `main`.
-3. In **Settings → Pages**, select **GitHub Actions** as the source.
-4. Let the included workflow deploy the temporary Pages URL.
-5. Test the temporary URL before attaching the custom domain.
-6. Follow the DNS and HTTPS sequence in the StarchipMC Technical Launch Plan.
+The public source repository is `StarchipMC/website`. Pushes to `main` deploy through the included GitHub Actions workflow.
 
-The `CNAME` file sets the production domain to `starchipmc.com`.
+1. Review the default staging URL before attaching the custom domain.
+2. Configure `starchipmc.com` under **Settings → Pages → Custom domain** only after the GoDaddy DNS zone is backed up.
+3. Follow the DNS and HTTPS sequence in the StarchipMC Technical Launch Plan.
+
+GitHub ignores repository `CNAME` files when publishing through a custom Actions workflow, so the production domain is managed in Pages settings instead.
 
 ## Content and privacy rules
 
