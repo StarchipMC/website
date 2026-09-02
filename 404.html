@@ -3,65 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#02080d" />
+    <meta name="theme-color" content="#020810" />
     <meta name="robots" content="noindex" />
-    <link rel="icon" type="image/webp" href="assets/icons/starchip-emblem.webp" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Transmission Lost | StarchipMC</title>
-    <style>
-      .lost-signal {
-        display: grid;
-        min-height: 100vh;
-        padding: 2rem;
-        place-items: center;
-      }
-
-      .lost-signal__panel {
-        max-width: 46rem;
-        padding: clamp(2rem, 8vw, 5rem);
-        border: 1px solid var(--cyan);
-        background: rgba(2, 9, 14, 0.94);
-        text-align: center;
-        clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
-      }
-
-      .lost-signal img {
-        width: 90px;
-        margin: 0 auto 1.5rem;
-        image-rendering: pixelated;
-      }
-
-      .lost-signal h1 {
-        font-family: var(--font-display);
-        font-size: clamp(1.6rem, 5vw, 2.75rem);
-      }
-
-      .lost-signal p {
-        color: var(--muted);
-      }
-
-      .lost-signal a {
-        display: inline-flex;
-        min-height: 48px;
-        margin-top: 1rem;
-        padding: 0.75rem 1.1rem;
-        align-items: center;
-        border: 1px solid var(--cyan);
-        color: var(--cyan-soft);
-        font-family: var(--font-display);
-        font-size: 0.65rem;
-        text-decoration: none;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=night-market-v2-layout-11" />
+    <title>Path Not Found | StarchipMC</title>
   </head>
   <body>
-    <main class="lost-signal">
-      <div class="lost-signal__panel">
-        <img src="assets/icons/starchip-emblem.webp" alt="" width="251" height="256" />
-        <p class="eyebrow">Error 404</p>
-        <h1>Transmission Lost</h1>
-        <p>This coordinate doesn’t lead to a StarchipMC briefing.</p>
-        <a href="/">Return to Mission Control</a>
+    <main class="lost">
+      <div class="lost__panel">
+        <a class="wordmark" href="/" aria-label="StarchipMC home">
+          <span class="wordmark__tools" aria-hidden="true"><img src="assets/night-market-v2/brand/starchipmc-tools-mark.png" alt="" width="640" height="640" /></span>
+          <span class="wordmark__name">Starchip<span>MC</span></span>
+        </a>
+        <p>404</p>
+        <h1>This path ends here.</h1>
+        <a class="lost__return" href="/">Return to the Night Market</a>
       </div>
     </main>
   </body>

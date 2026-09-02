@@ -1,6 +1,6 @@
 # StarchipMC Website
 
-Static single-page marketing site for StarchipMC, a private Minecraft server shared by Starfire and her real-world friends.
+Static single-page Night Market prototype for StarchipMC, rebuilt directly from the approved raster mockup.
 
 The website is public. The Minecraft server is not open to public registration.
 
@@ -32,7 +32,7 @@ Do not judge clipboard behavior from a `file://` URL; the browser Clipboard API 
 
 The contact form uses FormSubmit's no-account email endpoint. The first submitted message sends an activation email to the configured recipient; open that message and confirm the form. After confirmation, future submissions are delivered to the same inbox. FormSubmit keeps CAPTCHA enabled and the site also includes a hidden honeypot field.
 
-The form works without JavaScript through its normal POST action. With JavaScript enabled, it sends in place and shows accessible loading, success, and failure messages.
+The form works without JavaScript through its normal POST action.
 
 ### GitHub Pages
 
@@ -57,4 +57,10 @@ Configure the production domain in Pages settings during DNS launch. GitHub will
 
 ## Fonts
 
-Silkscreen and Chakra Petch are self-hosted under the SIL Open Font License. Their license texts are stored beside the font files in `assets/fonts/`.
+Silkscreen and Chakra Petch are self-hosted under the SIL Open Font License. The active font files and licenses live in `assets/night-market-v2/fonts/`.
+
+## Design source
+
+The active page references only the isolated `assets/night-market-v2/` package. Its canonical raster reference, generated scene sources, deterministic build script, and asset manifest live in `../design/assets/night-market-v2/`.
+
+The inherited prototype was preserved outside the publishable website directory at `../prototypes/temporary-inherited-prototype-2026-09-02/`.

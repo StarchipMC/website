@@ -1,208 +1,110 @@
-(function () {
-  "use strict";
+(() => {
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const nav = document.querySelector("[data-nav]");
 
-  const SERVER_ADDRESS = "play.starchipmc.com";
-  const globalStatus = document.querySelector("[data-global-status]");
-  const menuToggle = document.querySelector("[data-menu-toggle]");
-  const siteNav = document.querySelector("[data-site-nav]");
+  if (navToggle && nav) {
+    const closeNav = () => {
+      navToggle.setAttribute("aria-expanded", "false");
+      nav.classList.remove("is-open");
+    };
 
-  function announce(message) {
-    if (!globalStatus) return;
-    globalStatus.textContent = "";
-    window.setTimeout(() => {
-      globalStatus.textContent = message;
-    }, 20);
+    navToggle.addEventListener("click", () => {
+      const open = navToggle.getAttribute("aria-expanded") !== "true";
+      navToggle.setAttribute("aria-expanded", String(open));
+      nav.classList.toggle("is-open", open);
+    });
+
+    nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeNav));
   }
 
-  function fallbackCopy(text) {
-    const field = document.createElement("textarea");
-    field.value = text;
-    field.setAttribute("readonly", "");
-    field.style.position = "fixed";
-    field.style.opacity = "0";
-    document.body.appendChild(field);
-    field.select();
-    const copied = document.execCommand("copy");
-    field.remove();
-    return copied;
-  }
+  const carousel = document.querySelector("[data-carousel]");
 
-  async function copyServerAddress(button) {
-    let copied = false;
+  if (carousel) {
+    const slides = [...carousel.querySelectorAll("[data-slide]")];
+    const thumbs = [...carousel.querySelectorAll("[data-thumb]")];
+    const dots = [...carousel.querySelectorAll("[data-dot]")];
+    const status = carousel.querySelector("[data-carousel-status]");
+    const back = carousel.querySelector("[data-carousel-back]");
+    const next = carousel.querySelector("[data-carousel-next]");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let current = 0;
+    let timer;
 
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(SERVER_ADDRESS);
-        copied = true;
-      } else {
-        copied = fallbackCopy(SERVER_ADDRESS);
-      }
-    } catch (_error) {
-      copied = false;
-    }
+    const stop = () => {
+      window.clearTimeout(timer);
+      timer = undefined;
+    };
 
-    const label = button.querySelector("[data-copy-label]");
-    if (copied) {
-      if (label) label.textContent = "Copied";
-      button.classList.add("is-copied");
-      announce("Server address copied to the clipboard.");
-      window.setTimeout(() => {
-        if (label) label.textContent = "Copy";
-        button.classList.remove("is-copied");
-      }, 1800);
-      return;
-    }
+    const show = (index, announce = true) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        const selected = slideIndex === current;
+        slide.classList.toggle("is-current", selected);
+        slide.setAttribute("aria-hidden", String(!selected));
+      });
+      thumbs.forEach((thumb, thumbIndex) => {
+        const selected = thumbIndex === current;
+        thumb.classList.toggle("is-current", selected);
+        thumb.setAttribute("aria-selected", String(selected));
+      });
+      dots.forEach((dot, dotIndex) => dot.classList.toggle("is-current", dotIndex === current));
+      if (announce && status) status.textContent = slides[current].dataset.label || "Screenshot selected";
+    };
 
-    const address = document.querySelector(".server-console code");
-    if (address && window.getSelection) {
-      const range = document.createRange();
-      range.selectNodeContents(address);
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-    announce("Select and copy the server address.");
+    const schedule = () => {
+      stop();
+      if (reduceMotion.matches) return;
+      timer = window.setTimeout(() => {
+        show(current + 1, false);
+        schedule();
+      }, 6000);
+    };
+
+    const choose = (index) => {
+      show(index);
+      schedule();
+    };
+
+    back?.addEventListener("click", () => choose(current - 1));
+    next?.addEventListener("click", () => choose(current + 1));
+    thumbs.forEach((thumb) => thumb.addEventListener("click", () => choose(Number(thumb.dataset.index))));
+
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", schedule);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", schedule);
+    reduceMotion.addEventListener?.("change", schedule);
+    schedule();
   }
 
   document.querySelectorAll("[data-copy-server]").forEach((button) => {
-    button.addEventListener("click", () => copyServerAddress(button));
-  });
-
-  if (menuToggle && siteNav) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-      menuToggle.setAttribute("aria-expanded", String(!isOpen));
-      siteNav.classList.toggle("is-open", !isOpen);
-    });
-
-    siteNav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        menuToggle.setAttribute("aria-expanded", "false");
-        siteNav.classList.remove("is-open");
-      });
-    });
-  }
-
-  const accordionButtons = Array.from(document.querySelectorAll("[data-accordion-button]"));
-
-  function setAccordionItem(button, shouldOpen) {
-    const answerId = button.getAttribute("aria-controls");
-    const answer = document.getElementById(answerId);
-    const symbol = button.querySelector(".accordion__symbol");
-    button.setAttribute("aria-expanded", String(shouldOpen));
-    if (answer) answer.hidden = !shouldOpen;
-    if (symbol) symbol.textContent = shouldOpen ? "−" : "+";
-  }
-
-  accordionButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const shouldOpen = button.getAttribute("aria-expanded") !== "true";
-      accordionButtons.forEach((candidate) => setAccordionItem(candidate, candidate === button && shouldOpen));
-    });
-  });
-
-  if (window.matchMedia("(max-width: 767px)").matches && accordionButtons[0]) {
-    setAccordionItem(accordionButtons[0], false);
-  }
-
-  const contactForm = document.querySelector("[data-contact-form]");
-
-  if (contactForm) {
-    const formStatus = contactForm.querySelector("[data-form-status]");
-    const submitButton = contactForm.querySelector("button[type='submit']");
-    const submitLabel = contactForm.querySelector("[data-submit-label]");
-    const fields = Array.from(contactForm.querySelectorAll("input:not([type='hidden']), textarea"));
-
-    function errorMessage(field) {
-      if (field.validity.valueMissing) return "Please complete this field.";
-      if (field.type === "email" && field.validity.typeMismatch) return "Enter a valid email address.";
-      return "";
-    }
-
-    function setFieldError(field) {
-      const message = errorMessage(field);
-      const errorId = `${field.id}-error`;
-      const existing = document.getElementById(errorId);
-
-      if (!message) {
-        field.removeAttribute("aria-invalid");
-        field.removeAttribute("aria-describedby");
-        if (existing) existing.remove();
-        return true;
-      }
-
-      field.setAttribute("aria-invalid", "true");
-      field.setAttribute("aria-describedby", errorId);
-      if (existing) {
-        existing.textContent = message;
-      } else {
-        const error = document.createElement("p");
-        error.className = "form-error";
-        error.id = errorId;
-        error.setAttribute("role", "alert");
-        error.textContent = message;
-        field.insertAdjacentElement("afterend", error);
-      }
-      return false;
-    }
-
-    function validateForm() {
-      let firstInvalid = null;
-      fields.forEach((field) => {
-        const isValid = setFieldError(field);
-        if (!isValid && !firstInvalid) firstInvalid = field;
-      });
-      if (firstInvalid) firstInvalid.focus();
-      return !firstInvalid;
-    }
-
-    fields.forEach((field) => {
-      field.addEventListener("blur", () => setFieldError(field));
-      field.addEventListener("input", () => {
-        if (field.getAttribute("aria-invalid") === "true") setFieldError(field);
-      });
-    });
-
-    contactForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      if (!validateForm()) {
-        formStatus.textContent = "Please review the highlighted fields.";
-        return;
-      }
-
-      const endpoint = contactForm.getAttribute("action") || "";
-      const ajaxEndpoint = endpoint.replace("https://formsubmit.co/", "https://formsubmit.co/ajax/");
-
-      if (!endpoint.startsWith("https://formsubmit.co/")) {
-        formStatus.textContent = "The contact form is temporarily unavailable. Please try again later.";
-        return;
-      }
-
-      submitButton.disabled = true;
-      submitLabel.textContent = "Sending…";
-      formStatus.textContent = "Sending your request…";
-
+    button.addEventListener("click", async () => {
       try {
-        const response = await fetch(ajaxEndpoint, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
-        });
-
-        if (!response.ok) throw new Error("Submission failed");
-
-        contactForm.reset();
-        formStatus.textContent = "Request sent. Thanks for reaching out—we’ll get back to you soon.";
-      } catch (_error) {
-        formStatus.textContent = "We couldn’t send your message. Please try again.";
-      } finally {
-        submitButton.disabled = false;
-        submitLabel.textContent = "Send request";
+        await navigator.clipboard.writeText("play.starchipmc.com");
+        const label = button.querySelector("[data-copy-label]");
+        const visibleLabel = button.querySelector("[data-copy-visible]");
+        if (label) label.textContent = "Server address copied";
+        if (visibleLabel) visibleLabel.textContent = "Copied";
+        button.classList.add("is-copied");
+        window.setTimeout(() => {
+          button.classList.remove("is-copied");
+          if (label) label.textContent = "Copy server address";
+          if (visibleLabel) visibleLabel.textContent = "Copy";
+        }, 1800);
+      } catch {
+        window.prompt("Copy the server address:", "play.starchipmc.com");
       }
     });
-  }
+  });
+
+  document.querySelectorAll("[data-accordion-button]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const open = button.getAttribute("aria-expanded") === "true";
+      const answer = document.getElementById(button.getAttribute("aria-controls"));
+      const symbol = button.querySelector("b");
+      button.setAttribute("aria-expanded", String(!open));
+      if (answer) answer.hidden = open;
+      if (symbol) symbol.textContent = open ? "+" : "−";
+    });
+  });
 })();
