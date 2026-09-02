@@ -362,7 +362,7 @@ img {
   display: grid;
   margin-top: -2rem;
   width: min(calc(100% - 24px), 1080px);
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(9, minmax(0, 1fr));
   gap: 0.55rem;
 }
 

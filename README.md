@@ -55,6 +55,16 @@ Configure the production domain in Pages settings during DNS launch. GitHub will
 - Keep UI copy and controls in HTML rather than raster images.
 - Preserve `play.starchipmc.com` when editing DNS.
 
+## Screenshot replacements needed
+
+Capture three new screenshots before the final image pass:
+
+- Skyblocks world card
+- PvP world card
+- Contact section
+
+The current images in those locations are temporary.
+
 ## Fonts
 
 Silkscreen and Chakra Petch are self-hosted under the SIL Open Font License. The active font files and licenses live in `assets/night-market-v2/fonts/`.
