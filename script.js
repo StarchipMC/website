@@ -111,38 +111,97 @@
     const formStatus = contactForm.querySelector("[data-form-status]");
     const submitButton = contactForm.querySelector("button[type='submit']");
     const submitLabel = contactForm.querySelector("[data-submit-label]");
+    const fields = Array.from(contactForm.querySelectorAll("input:not([type='hidden']), textarea"));
+
+    function errorMessage(field) {
+      if (field.validity.valueMissing) return "Please complete this field.";
+      if (field.type === "email" && field.validity.typeMismatch) return "Enter a valid email address.";
+      return "";
+    }
+
+    function setFieldError(field) {
+      const message = errorMessage(field);
+      const errorId = `${field.id}-error`;
+      const existing = document.getElementById(errorId);
+
+      if (!message) {
+        field.removeAttribute("aria-invalid");
+        field.removeAttribute("aria-describedby");
+        if (existing) existing.remove();
+        return true;
+      }
+
+      field.setAttribute("aria-invalid", "true");
+      field.setAttribute("aria-describedby", errorId);
+      if (existing) {
+        existing.textContent = message;
+      } else {
+        const error = document.createElement("p");
+        error.className = "form-error";
+        error.id = errorId;
+        error.setAttribute("role", "alert");
+        error.textContent = message;
+        field.insertAdjacentElement("afterend", error);
+      }
+      return false;
+    }
+
+    function validateForm() {
+      let firstInvalid = null;
+      fields.forEach((field) => {
+        const isValid = setFieldError(field);
+        if (!isValid && !firstInvalid) firstInvalid = field;
+      });
+      if (firstInvalid) firstInvalid.focus();
+      return !firstInvalid;
+    }
+
+    fields.forEach((field) => {
+      field.addEventListener("blur", () => setFieldError(field));
+      field.addEventListener("input", () => {
+        if (field.getAttribute("aria-invalid") === "true") setFieldError(field);
+      });
+    });
 
     contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      if (!contactForm.reportValidity()) return;
+      if (!validateForm()) {
+        formStatus.textContent = "Please review the highlighted fields.";
+        return;
+      }
 
       const endpoint = contactForm.getAttribute("action") || "";
-      if (endpoint.includes("REPLACE_FORM_ID")) {
-        formStatus.textContent = "The contact form is being connected for launch. Please check back soon.";
+      const ajaxEndpoint = endpoint.replace("https://formsubmit.co/", "https://formsubmit.co/ajax/");
+
+      if (!endpoint.startsWith("https://formsubmit.co/")) {
+        formStatus.textContent = "The contact form is temporarily unavailable. Please try again later.";
         return;
       }
 
       submitButton.disabled = true;
       submitLabel.textContent = "Sending…";
-      formStatus.textContent = "Sending your question…";
+      formStatus.textContent = "Sending your request…";
 
       try {
-        const response = await fetch(endpoint, {
+        const response = await fetch(ajaxEndpoint, {
           method: "POST",
-          body: new FormData(contactForm),
-          headers: { Accept: "application/json" },
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
         });
 
         if (!response.ok) throw new Error("Submission failed");
 
         contactForm.reset();
-        formStatus.textContent = "Message sent. Thanks for reaching out—we’ll get back to you soon.";
+        formStatus.textContent = "Request sent. Thanks for reaching out—we’ll get back to you soon.";
       } catch (_error) {
         formStatus.textContent = "We couldn’t send your message. Please try again.";
       } finally {
         submitButton.disabled = false;
-        submitLabel.textContent = "Send a question";
+        submitLabel.textContent = "Send request";
       }
     });
   }

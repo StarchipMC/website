@@ -10,7 +10,7 @@ The website is public. The Minecraft server is not open to public registration.
 - Hand-authored responsive CSS
 - Small progressive-enhancement JavaScript
 - GitHub Pages deployment through GitHub Actions
-- Formspree contact endpoint once configured
+- FormSubmit contact delivery with first-use email activation
 
 There is no package manager or production build step.
 
@@ -30,21 +30,9 @@ Do not judge clipboard behavior from a `file://` URL; the browser Clipboard API 
 
 ### Connect the contact form
 
-Create a Formspree form owned by the approved private StarchipMC project mailbox, then replace `REPLACE_FORM_ID` in `index.html` with the public form ID. The expected action format is:
+The contact form uses FormSubmit's no-account email endpoint. The first submitted message sends an activation email to the configured recipient; open that message and confirm the form. After confirmation, future submissions are delivered to the same inbox. FormSubmit keeps CAPTCHA enabled and the site also includes a hidden honeypot field.
 
-```text
-https://formspree.io/f/FORM_ID
-```
-
-Then:
-
-1. Restrict accepted submissions to `starchipmc.com` in Formspree.
-2. Confirm that the `_gotcha` honeypot is enabled.
-3. Submit a real test from the production domain.
-4. Confirm receipt and reply from the StarchipMC Proton identity.
-5. Delete the test submission.
-
-The page intentionally blocks submission while the placeholder form ID remains.
+The form works without JavaScript through its normal POST action. With JavaScript enabled, it sends in place and shows accessible loading, success, and failure messages.
 
 ### GitHub Pages
 
@@ -62,7 +50,8 @@ Configure the production domain in Pages settings during DNS launch. GitHub will
 
 - Never describe StarchipMC as open to the public.
 - Never commit player names, child-related information, server administration data, allowlists, or credentials.
-- Keep form collection limited to an adult’s name, reply email, and message.
+- Keep form collection limited to a name, reply email, and message. Never collect passwords or other sensitive
+  account details.
 - Keep UI copy and controls in HTML rather than raster images.
 - Preserve `play.starchipmc.com` when editing DNS.
 
