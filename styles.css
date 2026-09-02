@@ -1081,11 +1081,13 @@ img {
   .frame { width: min(calc(100% - 16px), var(--frame)); }
   .briefing.frame,
   .join.frame { width: 100%; }
-  .topbar { min-height: 62px; margin-top: 8px; }
+  .topbar { min-height: 70px; margin-top: 8px; justify-content: center; }
   .topbar .header-server { display: none; }
   .wordmark__tools { width: 32px; height: 32px; }
   .wordmark__name { font-size: 0.98rem; }
-  .hero { padding-top: 70px; }
+  .topbar .wordmark__tools { width: 40px; height: 40px; }
+  .topbar .wordmark__name { font-size: 1.225rem; }
+  .hero { padding-top: 78px; }
   .carousel__stage { height: clamp(300px, 76vw, 440px); }
   .carousel__arrow { width: 40px; height: 40px; }
   .carousel__dots { bottom: 2.3rem; }
