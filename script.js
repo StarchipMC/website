@@ -6,6 +6,7 @@
     const thumbs = [...carousel.querySelectorAll("[data-thumb]")];
     const dots = [...carousel.querySelectorAll("[data-dot]")];
     const status = carousel.querySelector("[data-carousel-status]");
+    const thumbStrip = carousel.querySelector(".carousel__thumbs");
     const back = carousel.querySelector("[data-carousel-back]");
     const next = carousel.querySelector("[data-carousel-next]");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -30,6 +31,17 @@
         thumb.setAttribute("aria-selected", String(selected));
       });
       dots.forEach((dot, dotIndex) => dot.classList.toggle("is-current", dotIndex === current));
+      const activeThumb = thumbs[current];
+      if (thumbStrip && activeThumb) {
+        const leftEdge = activeThumb.offsetLeft;
+        const rightEdge = leftEdge + activeThumb.offsetWidth;
+        let targetLeft = thumbStrip.scrollLeft;
+        if (leftEdge < thumbStrip.scrollLeft) targetLeft = leftEdge;
+        if (rightEdge > thumbStrip.scrollLeft + thumbStrip.clientWidth) targetLeft = rightEdge - thumbStrip.clientWidth;
+        if (targetLeft !== thumbStrip.scrollLeft) {
+          thumbStrip.scrollTo({ left: targetLeft, behavior: reduceMotion.matches ? "auto" : "smooth" });
+        }
+      }
       if (announce && status) status.textContent = slides[current].dataset.label || "Screenshot selected";
     };
 
