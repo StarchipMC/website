@@ -50,7 +50,7 @@ Configure the production domain in Pages settings during DNS launch. GitHub will
 
 - Never describe StarchipMC as open to the public.
 - Never commit player names, child-related information, server administration data, allowlists, or credentials.
-- Keep form collection limited to a name, reply email, and message. Never collect passwords or other sensitive
+- Keep form collection limited to a name, reply email, Minecraft username, and message. Never collect passwords or other sensitive
   account details.
 - Keep UI copy and controls in HTML rather than raster images.
 - Preserve `play.starchipmc.com` when editing DNS.
