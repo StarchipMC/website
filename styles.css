@@ -140,35 +140,15 @@ img {
 
 .wordmark {
   display: inline-flex;
-  min-width: max-content;
+  width: 300px;
+  max-width: 100%;
+  min-width: 0;
   align-items: center;
-  gap: 0.7rem;
 }
 
-.wordmark__tools {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  place-items: center;
-}
-
-.wordmark__tools img {
+.wordmark__logo {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  image-rendering: pixelated;
-}
-
-.wordmark__name {
-  font-family: var(--pixel);
-  font-size: clamp(1.06rem, 2.2vw, 1.65rem);
-  letter-spacing: -0.08em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.wordmark__name span {
-  color: var(--pink);
+  height: auto;
 }
 
 .nav,
@@ -1018,6 +998,7 @@ img {
 
 .lost__panel {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   width: min(100%, 620px);
   min-height: 360px;
   padding: clamp(2rem, 7vw, 4.5rem);
@@ -1092,10 +1073,6 @@ img {
   .join.frame { width: 100%; }
   .topbar { min-height: 70px; margin-top: 8px; justify-content: center; }
   .topbar .header-server { display: none; }
-  .wordmark__tools { width: 32px; height: 32px; }
-  .wordmark__name { font-size: 0.98rem; }
-  .topbar .wordmark__tools { width: 40px; height: 40px; }
-  .topbar .wordmark__name { font-size: 1.225rem; }
   .hero { padding-top: 78px; }
   .carousel__stage { height: clamp(300px, 76vw, 440px); }
   .carousel__arrow { width: 40px; height: 40px; }
